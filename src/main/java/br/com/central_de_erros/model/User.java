@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -24,7 +25,7 @@ public class User {
   private String email;
 
   @NotBlank(message = "Campo obrigatório")
-  @Min(6)
+  @Size(min = 2, max = 14)
   private String password;
 
   private boolean status;
