@@ -20,8 +20,8 @@ public class LogErros {
   @NotBlank(message = "Campo obrigatório")
   private String origin;
 
-  private String Details;
+  private String details;
 
-  private LocalDateTime data;
+  private LocalDateTime date;
 
 }
