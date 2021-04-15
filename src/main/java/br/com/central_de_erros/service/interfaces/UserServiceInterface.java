@@ -1,4 +1,4 @@
-package br.com.central_de_erros.service;
+package br.com.central_de_erros.service.interfaces;
 
 import br.com.central_de_erros.model.User;
 

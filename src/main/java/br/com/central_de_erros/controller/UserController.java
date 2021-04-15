@@ -1,7 +1,7 @@
 package br.com.central_de_erros.controller;
 
 import br.com.central_de_erros.model.User;
-import br.com.central_de_erros.service.UserServiceInterface;
+import br.com.central_de_erros.service.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,7 +1,8 @@
-package br.com.central_de_erros.service;
+package br.com.central_de_erros.service.impl;
 
 import br.com.central_de_erros.model.User;
 import br.com.central_de_erros.repository.UserRepository;
+import br.com.central_de_erros.service.interfaces.UserServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
