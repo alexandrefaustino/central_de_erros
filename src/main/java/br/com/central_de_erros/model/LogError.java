@@ -1,17 +1,25 @@
 package br.com.central_de_erros.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import sun.util.calendar.BaseCalendar;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class LogError {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   @Enumerated(EnumType.STRING)
+  @NotNull
   private LevelError level;
 
   @NotBlank(message = "Campo obrigatório")
@@ -82,4 +90,9 @@ public class LogError {
   public void setDate(LocalDateTime date) {
     this.date = date;
   }
+
+//  @PrePersist
+//  public  void createDate() {
+//    this.date = new ;
+//  }
 }
