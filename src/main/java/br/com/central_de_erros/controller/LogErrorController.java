@@ -1,5 +1,7 @@
 package br.com.central_de_erros.controller;
 
+import br.com.central_de_erros.dto.LogErrorPageDTO;
+import br.com.central_de_erros.mapper.LogErrorMapper;
 import br.com.central_de_erros.model.LogError;
 import br.com.central_de_erros.service.interfaces.LogErrorServiceInterface;
 import io.swagger.annotations.ApiOperation;
@@ -12,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/errors")
@@ -21,9 +22,11 @@ public class LogErrorController {
   @Autowired
   private LogErrorServiceInterface service;
 
+  private LogErrorMapper mapper;
+
   @GetMapping
-  public List<LogError> findAll(Pageable pageable) {
-    return service.findAll(pageable).getContent();
+  public ResponseEntity<LogErrorPageDTO> findAll(Pageable pageable) {
+    return new ResponseEntity<LogErrorPageDTO>(service.findAllDTO(pageable), HttpStatus.OK);
   }
 
   @PostMapping
@@ -33,10 +36,4 @@ public class LogErrorController {
     return  new ResponseEntity<LogError>(this.service.save(logError), HttpStatus.CREATED);
   }
 
-//  @PostMapping
-//  @ApiOperation("Cria um novo livro")
-//  @ApiResponses(value = {@ApiResponse(code = 201, message = "Livro criado com sucesso")})
-//  public ResponseEntity<Livro> create(@Valid @RequestBody Livro livro) {
-//    return new ResponseEntity<Livro>(this.livroService.save(livro), HttpStatus.CREATED);
-//  }
 }
