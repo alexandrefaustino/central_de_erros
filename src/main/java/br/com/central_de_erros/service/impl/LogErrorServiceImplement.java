@@ -10,12 +10,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class LogErrorServiceImplement implements LogErrorServiceInterface {
+
+    private LogErrorPageDTO formatLogPageDTO(Page<LogError> logErrorPage  ) {
+        long quantity = logErrorPage.getTotalElements();
+        List<LogErrorDTO> logErrorList= LogErrorDTO.convert(logErrorPage.getContent());
+        return new LogErrorPageDTO(quantity, logErrorList);
+    }
 
     @Autowired
     private LogErrorRepository logErrorRepository;
@@ -26,8 +35,8 @@ public class LogErrorServiceImplement implements LogErrorServiceInterface {
     }
 
     @Override
-    public long getSizeList(LevelError level, Pageable pageable) {
-        return logErrorRepository.findByLevel(level, pageable).getTotalElements();
+    public Optional<LogError> findById(Long id)  {
+        return logErrorRepository.findById(id);
     }
 
     @Override
@@ -39,11 +48,12 @@ public class LogErrorServiceImplement implements LogErrorServiceInterface {
     @Override
     public LogErrorPageDTO findAllDTO(Pageable pageable) {
         Page<LogError> logErrorPage = this.findAll(pageable);
-        System.out.println(pageable.getPageNumber());
-        System.out.println(pageable.getPageSize());
-        long quantity = logErrorPage.getTotalElements();
-        List<LogErrorDTO> logErrorList= LogErrorDTO.convert(logErrorPage.getContent());
-        return new LogErrorPageDTO(quantity, logErrorList);
+        return formatLogPageDTO(logErrorPage);
     }
 
+    @Override
+    public LogErrorPageDTO findByDateIsContaining(LocalDate date, Pageable pageable) {
+        Page<LogError> logErrorPage = logErrorRepository.findByDateIsContaining(date, pageable);
+        return formatLogPageDTO(logErrorPage);
+    }
 }

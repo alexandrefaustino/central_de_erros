@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Repository
@@ -21,5 +22,5 @@ public interface LogErrorRepository extends JpaRepository<LogError, Long> {
 
     Page<LogError> findByDetails(String details, Pageable pageable);
 
-    Page<LogError> findByDate(LocalDateTime date, Pageable pageable);
+    Page<LogError> findByDateIsContaining(LocalDate date, Pageable pageable);
 }
