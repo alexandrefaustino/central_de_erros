@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -56,6 +55,31 @@ public class LogErrorServiceImplement implements LogErrorServiceInterface {
     public LogErrorPageDTO findByDate(LocalDate localDate, Pageable pageable) {
         Page<LogError> logErrorPage = logErrorRepository
                 .findByDateBetween(localDate.atStartOfDay(), localDate.atTime(23, 59,59,59), pageable);
+        return formatLogPageDTO(logErrorPage);
+    }
+
+    @Override
+    public LogErrorPageDTO findByLevel(LevelError query, Pageable pageable) {
+        Page<LogError> logErrorPage = logErrorRepository.findByLevelContaining(query, pageable);
+        return formatLogPageDTO(logErrorPage);
+    }
+
+    @Override
+    public LogErrorPageDTO findByDescription(String query, Pageable pageable) {
+        Page<LogError> logErrorPage = logErrorRepository.findByDescriptionContaining(query, pageable);
+        return formatLogPageDTO(logErrorPage);
+    }
+
+    @Override
+    public LogErrorPageDTO findByOrigin(String query, Pageable pageable) {
+        Page<LogError> logErrorPage = logErrorRepository.findByOriginContaining(query, pageable);
+        System.out.println(logErrorPage);
+        return formatLogPageDTO(logErrorPage);
+    }
+
+    @Override
+    public LogErrorPageDTO findByDetails(String query, Pageable pageable) {
+        Page<LogError> logErrorPage = logErrorRepository.findByDetailsContaining(query, pageable);
         return formatLogPageDTO(logErrorPage);
     }
 }

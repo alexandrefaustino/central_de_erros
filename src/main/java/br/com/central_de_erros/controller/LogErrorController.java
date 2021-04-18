@@ -3,6 +3,7 @@ package br.com.central_de_erros.controller;
 import br.com.central_de_erros.controller.adviced.ResourceNotFoundException;
 import br.com.central_de_erros.dto.LogErrorPageDTO;
 import br.com.central_de_erros.mapper.LogErrorMapper;
+import br.com.central_de_erros.model.LevelError;
 import br.com.central_de_erros.model.LogError;
 import br.com.central_de_erros.service.interfaces.LogErrorServiceInterface;
 import io.swagger.annotations.ApiOperation;
@@ -13,12 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/errors")
@@ -58,4 +55,61 @@ public class LogErrorController {
     System.out.println(localDate.getClass());
     return new ResponseEntity<LogErrorPageDTO>(this.service.findByDate(localDate, pageable),HttpStatus.OK);
   }
+
+  @GetMapping("/search/level/{query}")
+  @ApiOperation("Busca Log de Erro por nível")
+  @ApiResponses(value = {
+          @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
+          @ApiResponse(code = 404, message = "Nível não encontrado")
+  })
+  public ResponseEntity<LogErrorPageDTO> searchByLevel(@PathVariable LevelError query,
+                                                       Pageable pageable) {
+    return new ResponseEntity<LogErrorPageDTO>(
+            service.findByLevel(query, pageable),
+            HttpStatus.OK
+    );
+  }
+
+  @GetMapping("/search/description/{query}")
+  @ApiOperation("Busca Log de Erro por descrição")
+  @ApiResponses(value = {
+          @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
+          @ApiResponse(code = 404, message = "Descrição não encontrada")
+  })
+  public ResponseEntity<LogErrorPageDTO> searchByDescription(@PathVariable String query,
+                                                       Pageable pageable) {
+    return new ResponseEntity<LogErrorPageDTO>(
+            service.findByDescription(query, pageable),
+            HttpStatus.OK
+    );
+  }
+
+  @GetMapping("/search/origin/{query}")
+  @ApiOperation("Busca Log de Erro por origem")
+  @ApiResponses(value = {
+          @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
+          @ApiResponse(code = 404, message = "Origem não encontrada")
+  })
+  public ResponseEntity<LogErrorPageDTO> searchByOrigin(@PathVariable String query,
+                                                       Pageable pageable) {
+    return new ResponseEntity<LogErrorPageDTO>(
+            service.findByOrigin(query, pageable),
+            HttpStatus.OK
+    );
+  }
+
+  @GetMapping("/search/details/{query}")
+  @ApiOperation("Busca Log de Erro por detalhes")
+  @ApiResponses(value = {
+          @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
+          @ApiResponse(code = 404, message = "Detalhes não encontrados")
+  })
+  public ResponseEntity<LogErrorPageDTO> searchByDetails(@PathVariable String query,
+                                                         Pageable pageable) {
+    return new ResponseEntity<LogErrorPageDTO>(
+            service.findByDetails(query, pageable),
+            HttpStatus.OK
+    );
+  }
+
 }
