@@ -54,8 +54,8 @@ public class LogErrorController {
   @ApiOperation("Busca Log de Erro por data")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Data não encontrada")})
-  public ResponseEntity<LogErrorPageDTO> findByDate(@RequestBody LocalDate date, Pageable pageable) {
-    System.out.println(date.getClass());
-    return new ResponseEntity<LogErrorPageDTO>(this.service.findByDateIsContaining(date, pageable),HttpStatus.OK);
+  public ResponseEntity<LogErrorPageDTO> findByDate(@RequestBody LocalDate localDate, Pageable pageable) {
+    System.out.println(localDate.getClass());
+    return new ResponseEntity<LogErrorPageDTO>(this.service.findByDate(localDate, pageable),HttpStatus.OK);
   }
 }

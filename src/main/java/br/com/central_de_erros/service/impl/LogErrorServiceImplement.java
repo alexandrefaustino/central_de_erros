@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,8 +53,9 @@ public class LogErrorServiceImplement implements LogErrorServiceInterface {
     }
 
     @Override
-    public LogErrorPageDTO findByDateIsContaining(LocalDate date, Pageable pageable) {
-        Page<LogError> logErrorPage = logErrorRepository.findByDateIsContaining(date, pageable);
+    public LogErrorPageDTO findByDate(LocalDate localDate, Pageable pageable) {
+        Page<LogError> logErrorPage = logErrorRepository
+                .findByDateBetween(localDate.atStartOfDay(), localDate.atTime(23, 59,59,59), pageable);
         return formatLogPageDTO(logErrorPage);
     }
 }
