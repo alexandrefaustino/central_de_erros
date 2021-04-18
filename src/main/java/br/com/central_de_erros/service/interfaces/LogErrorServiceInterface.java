@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,5 +24,5 @@ public interface LogErrorServiceInterface {
 
     LogErrorPageDTO findAllDTO(Pageable pageable);
 
-    LogErrorPageDTO findByDateIsContaining(LocalDate date, Pageable pageable);
+    LogErrorPageDTO findByDate(LocalDate date, Pageable pageable);
 }
