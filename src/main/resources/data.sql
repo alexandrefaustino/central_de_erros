@@ -13,6 +13,6 @@ VALUES
 (5, 'WARNING', 'erro de informação', '192.168.1.5', 'cadastrarError()', 'sem maiores detalhes', '2021-04-09'),
 (6, 'ERROR', 'erro de informação', '192.168.1.5', 'cadastrarError()', 'sem maiores detalhes', '2021-04-08'),
 (7, 'ERROR', 'erro de informação', '192.168.1.5', 'cadastrarError()', 'sem maiores detalhes', '2021-04-13'),
-(8, 'WARNING', 'erro de informação', '192.168.1.5', 'cadastrarError()', 'sem maiores detalhes', '2021-04-01'),
+(8, 'WARNING', 'alerta vermelho', '192.168.1.5', 'cadastrarError()', 'sem menores detalhes', '2021-04-01'),
 (9, 'INFO', 'erro de informação', '192.168.1.5', 'cadastrarError()', 'sem maiores detalhes', '2021-04-13');
 

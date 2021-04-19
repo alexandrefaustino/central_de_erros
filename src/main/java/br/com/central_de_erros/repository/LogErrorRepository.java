@@ -9,20 +9,19 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface LogErrorRepository extends JpaRepository<LogError, Long> {
     Page<LogError> findAll(Pageable pageable);
 
-    Page<LogError> findByLevel(LevelError level, Pageable pageable);
+    Page<LogError> findByLevelContaining(LevelError level, Pageable pageable);
 
-    Page<LogError> findByDescription(String description, Pageable pageable);
+    Page<LogError> findByDescriptionContaining(String description, Pageable pageable);
 
-    Page<LogError> findByOrigin(String origin, Pageable pageable);
+    Page<LogError> findByOriginContaining(String origin, Pageable pageable);
 
-    Page<LogError> findByDetails(String details, Pageable pageable);
-
-    // Page<LogError> findByDate(LocalDate date, Pageable pageable);
+    Page<LogError> findByDetailsContaining(String details, Pageable pageable);
 
     Page<LogError> findByDateBetween(LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 }

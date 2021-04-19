@@ -3,15 +3,10 @@ package br.com.central_de_erros.service.interfaces;
 import br.com.central_de_erros.dto.LogErrorPageDTO;
 import br.com.central_de_erros.model.LevelError;
 import br.com.central_de_erros.model.LogError;
-import br.com.central_de_erros.model.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 public interface LogErrorServiceInterface {
@@ -25,4 +20,12 @@ public interface LogErrorServiceInterface {
     LogErrorPageDTO findAllDTO(Pageable pageable);
 
     LogErrorPageDTO findByDate(LocalDate date, Pageable pageable);
+
+    LogErrorPageDTO findByLevel(LevelError query, Pageable pageable);
+
+    LogErrorPageDTO findByDescription(String query, Pageable pageable);
+
+    LogErrorPageDTO findByOrigin(String query, Pageable pageable);
+
+    LogErrorPageDTO findByDetails(String query, Pageable pageable);
 }
