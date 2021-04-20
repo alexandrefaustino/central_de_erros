@@ -18,7 +18,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 @EnableResourceServer
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private static final String[] AUTH_LIST = {"/users", "/h2/**", "/**"};
+    // private static final String[] AUTH_LIST = {};
 
     @Autowired
     private UserDetailsService userService;
@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(AUTH_LIST);
+        web.ignoring().antMatchers();
     }
 
     @Override
