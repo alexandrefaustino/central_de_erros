@@ -2,7 +2,6 @@ package br.com.central_de_erros.controller;
 
 import br.com.central_de_erros.controller.adviced.ResourceNotFoundException;
 import br.com.central_de_erros.dto.LogErrorPageDTO;
-import br.com.central_de_erros.mapper.LogErrorMapper;
 import br.com.central_de_erros.model.LevelError;
 import br.com.central_de_erros.model.LogError;
 import br.com.central_de_erros.service.interfaces.LogErrorServiceInterface;
@@ -23,8 +22,6 @@ public class LogErrorController {
 
   @Autowired
   private LogErrorServiceInterface service;
-
-  private LogErrorMapper mapper;
 
   @GetMapping
   public ResponseEntity<LogErrorPageDTO> findAll(Pageable pageable) {
