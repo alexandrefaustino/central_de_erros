@@ -17,8 +17,6 @@ public class LogErrorDTO {
 
     private String origin;
 
-    private String details;
-
     private LocalDateTime date;
 
     public Long getId() {
@@ -53,14 +51,6 @@ public class LogErrorDTO {
         this.origin = origin;
     }
 
-    public String getDetails() {
-        return details;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
@@ -77,7 +67,6 @@ public class LogErrorDTO {
         this.level = logError.getLevel();
         this.description = logError.getDescription();
         this.origin = logError.getOrigin();
-        this.details = logError.getDetails();
         this.date = logError.getDate();
     }
 

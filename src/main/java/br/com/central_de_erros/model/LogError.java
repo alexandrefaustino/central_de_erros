@@ -25,8 +25,6 @@ public class LogError {
   @NotBlank(message = "Campo obrigatório")
   private String eventLog;
 
-  private String details;
-
   private LocalDateTime date;
 
   public Long getId() {
@@ -67,14 +65,6 @@ public class LogError {
 
   public void setEventLog(String eventLog) {
     this.eventLog = eventLog;
-  }
-
-  public String getDetails() {
-    return details;
-  }
-
-  public void setDetails(String details) {
-    this.details = details;
   }
 
   public LocalDateTime getDate() {

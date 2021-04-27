@@ -21,7 +21,5 @@ public interface LogErrorRepository extends JpaRepository<LogError, Long> {
 
     Page<LogError> findByOriginContaining(String origin, Pageable pageable);
 
-    Page<LogError> findByDetailsContaining(String details, Pageable pageable);
-
     Page<LogError> findByDateBetween(LocalDateTime startDate, LocalDateTime endDate, Pageable pageable);
 }

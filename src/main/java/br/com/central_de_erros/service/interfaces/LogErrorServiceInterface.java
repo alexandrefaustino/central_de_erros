@@ -26,6 +26,4 @@ public interface LogErrorServiceInterface {
     LogErrorPageDTO findByDescription(String query, Pageable pageable);
 
     LogErrorPageDTO findByOrigin(String query, Pageable pageable);
-
-    LogErrorPageDTO findByDetails(String query, Pageable pageable);
 }
