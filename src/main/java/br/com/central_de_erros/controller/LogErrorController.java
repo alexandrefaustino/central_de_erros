@@ -10,6 +10,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,14 +48,13 @@ public class LogErrorController {
             .orElseThrow(() -> new ResourceNotFoundException("id não encontrado")), HttpStatus.OK);
   }
 
-  @PostMapping("/search/date")
+  @GetMapping("/search/date/{query}")
   @ApiOperation("Busca Log de Erro por data")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Data não encontrada")})
   @CrossOrigin(origins = "*")
-  public ResponseEntity<LogErrorPageDTO> findByDate(@RequestBody LocalDate localDate, Pageable pageable) {
-    System.out.println(localDate.getClass());
-    return new ResponseEntity<LogErrorPageDTO>(this.service.findByDate(localDate, pageable),HttpStatus.OK);
+  public ResponseEntity<LogErrorPageDTO> findByDate(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate query, Pageable pageable) {
+    return new ResponseEntity<LogErrorPageDTO>(this.service.findByDate(query, pageable),HttpStatus.OK);
   }
 
   @GetMapping("/search/level/{query}")
@@ -98,21 +98,6 @@ public class LogErrorController {
                                                        Pageable pageable) {
     return new ResponseEntity<LogErrorPageDTO>(
             service.findByOrigin(query, pageable),
-            HttpStatus.OK
-    );
-  }
-
-  @GetMapping("/search/details/{query}")
-  @ApiOperation("Busca Log de Erro por detalhes")
-  @ApiResponses(value = {
-          @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
-          @ApiResponse(code = 404, message = "Detalhes não encontrados")
-  })
-  @CrossOrigin(origins = "*")
-  public ResponseEntity<LogErrorPageDTO> searchByDetails(@PathVariable String query,
-                                                         Pageable pageable) {
-    return new ResponseEntity<LogErrorPageDTO>(
-            service.findByDetails(query, pageable),
             HttpStatus.OK
     );
   }
