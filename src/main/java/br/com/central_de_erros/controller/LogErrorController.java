@@ -24,6 +24,7 @@ public class LogErrorController {
   private LogErrorServiceInterface service;
 
   @GetMapping
+  @CrossOrigin(origins = "*")
   public ResponseEntity<LogErrorPageDTO> findAll(Pageable pageable) {
     return new ResponseEntity<LogErrorPageDTO>(service.findAllDTO(pageable), HttpStatus.OK);
   }
