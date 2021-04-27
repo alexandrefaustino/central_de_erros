@@ -24,12 +24,14 @@ public class LogErrorController {
   private LogErrorServiceInterface service;
 
   @GetMapping
+  @CrossOrigin(origins = "*")
   public ResponseEntity<LogErrorPageDTO> findAll(Pageable pageable) {
     return new ResponseEntity<LogErrorPageDTO>(service.findAllDTO(pageable), HttpStatus.OK);
   }
 
   @PostMapping
   @ApiOperation("Cria um novo Log de Erro")
+  @CrossOrigin(origins = "*")
   @ApiResponses(value = {@ApiResponse(code = 201, message = "Log de Erro criado com sucesso")})
   public ResponseEntity<LogError> create(@Valid @RequestBody LogError logError) {
     return new ResponseEntity<LogError>(this.service.save(logError), HttpStatus.CREATED);
@@ -39,6 +41,7 @@ public class LogErrorController {
   @ApiOperation("Busca Log de Erro por id")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Id não encontrado")})
+  @CrossOrigin("*")
   public ResponseEntity<LogError> findById(@PathVariable Long id) {
     return new ResponseEntity<LogError>(this.service.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("id não encontrado")), HttpStatus.OK);
@@ -48,6 +51,7 @@ public class LogErrorController {
   @ApiOperation("Busca Log de Erro por data")
   @ApiResponses(value = {@ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Data não encontrada")})
+  @CrossOrigin(origins = "*")
   public ResponseEntity<LogErrorPageDTO> findByDate(@RequestBody LocalDate localDate, Pageable pageable) {
     System.out.println(localDate.getClass());
     return new ResponseEntity<LogErrorPageDTO>(this.service.findByDate(localDate, pageable),HttpStatus.OK);
@@ -59,6 +63,7 @@ public class LogErrorController {
           @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Nível não encontrado")
   })
+  @CrossOrigin(origins = "*")
   public ResponseEntity<LogErrorPageDTO> searchByLevel(@PathVariable LevelError query,
                                                        Pageable pageable) {
     return new ResponseEntity<LogErrorPageDTO>(
@@ -73,6 +78,7 @@ public class LogErrorController {
           @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Descrição não encontrada")
   })
+  @CrossOrigin(origins = "*")
   public ResponseEntity<LogErrorPageDTO> searchByDescription(@PathVariable String query,
                                                        Pageable pageable) {
     return new ResponseEntity<LogErrorPageDTO>(
@@ -87,6 +93,7 @@ public class LogErrorController {
           @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Origem não encontrada")
   })
+  @CrossOrigin(origins = "*")
   public ResponseEntity<LogErrorPageDTO> searchByOrigin(@PathVariable String query,
                                                        Pageable pageable) {
     return new ResponseEntity<LogErrorPageDTO>(
@@ -101,6 +108,7 @@ public class LogErrorController {
           @ApiResponse(code = 200, message = "Log de Erro encontrado com sucesso"),
           @ApiResponse(code = 404, message = "Detalhes não encontrados")
   })
+  @CrossOrigin(origins = "*")
   public ResponseEntity<LogErrorPageDTO> searchByDetails(@PathVariable String query,
                                                          Pageable pageable) {
     return new ResponseEntity<LogErrorPageDTO>(

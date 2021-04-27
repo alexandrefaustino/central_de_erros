@@ -60,7 +60,7 @@ public class LogErrorServiceImplement implements LogErrorServiceInterface {
 
     @Override
     public LogErrorPageDTO findByLevel(LevelError query, Pageable pageable) {
-        Page<LogError> logErrorPage = logErrorRepository.findByLevelContaining(query, pageable);
+        Page<LogError> logErrorPage = logErrorRepository.findByLevel(query, pageable);
         return formatLogPageDTO(logErrorPage);
     }
 

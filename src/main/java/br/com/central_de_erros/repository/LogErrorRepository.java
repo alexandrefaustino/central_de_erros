@@ -15,7 +15,7 @@ import java.util.List;
 public interface LogErrorRepository extends JpaRepository<LogError, Long> {
     Page<LogError> findAll(Pageable pageable);
 
-    Page<LogError> findByLevelContaining(LevelError level, Pageable pageable);
+    Page<LogError> findByLevel(LevelError level, Pageable pageable);
 
     Page<LogError> findByDescriptionContaining(String description, Pageable pageable);
 
