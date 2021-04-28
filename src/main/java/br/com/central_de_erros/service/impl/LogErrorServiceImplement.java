@@ -73,7 +73,6 @@ public class LogErrorServiceImplement implements LogErrorServiceInterface {
     @Override
     public LogErrorPageDTO findByOrigin(String query, Pageable pageable) {
         Page<LogError> logErrorPage = logErrorRepository.findByOriginContaining(query, pageable);
-        System.out.println(logErrorPage);
         return formatLogPageDTO(logErrorPage);
     }
 

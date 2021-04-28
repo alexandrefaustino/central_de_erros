@@ -23,7 +23,12 @@ import org.springframework.web.filter.CorsFilter;
 @EnableResourceServer
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    // private static final String[] AUTH_LIST = {};
+     private static final String[] AUTH_LIST = {"/v2/api-docs",
+             "/configuration/ui",
+             "/swagger-resources/**",
+             "/configuration/security",
+             "/swagger-ui.html",
+             "/webjars/**"};
 
     @Autowired
     private UserDetailsService userService;
@@ -36,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers();
+        web.ignoring().antMatchers(AUTH_LIST);
     }
 
     @Override
