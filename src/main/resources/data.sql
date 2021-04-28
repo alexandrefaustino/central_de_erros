@@ -1,8 +1,8 @@
 INSERT INTO `user`
 (id, name, email, password, status)
 VALUES
-(9, 'Julio', 'juliokauer@gmail.com', '123456', true);
-(8, 'Alexandre', 'alexandre@gmail.com', '123456', true);
+(9, 'Julio', 'juliokauer@gmail.com', '123456', true),
+(8, 'Alexandre', 'alexandre@gmail.com', '123456', true),
 (7, 'Emanuelle', 'emanuelle@gmail.com', '123456', true);
 
 INSERT INTO `log_error`
